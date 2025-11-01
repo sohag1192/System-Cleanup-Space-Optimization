@@ -30,7 +30,7 @@ crontab -e
 
 Add this line to run daily at 3:00 AM:
 ```bash
-0 3 * * * /usr/local/bin/log_cleanup.sh >> /var/log/sohag_log_cleanup.log 2>&1
+0 3 * * * /root/log_cleanup.sh >> /root/log_cleanup.log 2>&1
 ```
 
 ---
