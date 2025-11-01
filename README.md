@@ -1,49 +1,61 @@
 # System-Cleanup-Space-Optimization
 🧼 Script by Sohag — System Cleanup &amp; Space Optimization
 
+---
 
-Your GitHub repository [System-Cleanup-Space-Optimization](https://github.com/sohag1192/System-Cleanup-Space-Optimization) contains two key scripts:
+### ✅ Step 1: Host Your Script on GitHub
+You've already done this! For example:
+
+- [`clean.sh`](https://github.com/sohag1192/System-Cleanup-Space-Optimization/blob/main/clean.sh)
 
 ---
 
-### 🧼 `clean.sh` — Full System Cleanup Script
-This script performs a comprehensive cleanup of your Ubuntu server:
+### 🧲 Step 2: Download Script via `wget`
 
-- **Truncates NGINX and RTMP logs**
-- **Displays APT cache size**
-- **Truncates all log files under `/var/log`**
-- **Removes partial and orphaned packages**
-- **Cleans APT cache and unnecessary packages**
-- **Deletes user and root trash**
-- **Removes manual pages**
-- **Deletes rotated and compressed logs**
-- **Prints final confirmation**
-
-🔗 [View `clean.sh` on GitHub](https://github.com/sohag1192/System-Cleanup-Space-Optimization/blob/main/clean.sh)
-
----
-
-### 🧹 `log_cleanup.sh` — Log-Focused Cleanup Script
-This script is specialized for log management:
-
-- **Truncates all logs except `wtmp` and `btmp`**
-- **Deletes rotated logs and `.gz` files**
-- **Vacuum systemd journal logs**
-- **Cleans NGINX/RTMP logs**
-- **Removes trash and manual pages**
-- **Performs APT cleanup and orphan removal**
-- **Displays disk usage after cleanup**
-
-🔗 [View `log_cleanup.sh` on GitHub](https://github.com/sohag1192/System-Cleanup-Space-Optimization/blob/main/log_cleanup.sh)
-
----
-
-Both scripts are modular, safe for production, and reflect your precision in system hygiene. You can run them with:
+Use `wget` to fetch the script directly to your server:
 
 ```bash
-chmod +x clean.sh log_cleanup.sh
-sudo ./clean.sh
-sudo ./log_cleanup.sh
+wget -O /usr/local/bin/clean.sh https://raw.githubusercontent.com/sohag1192/System-Cleanup-Space-Optimization/main/clean.sh
 ```
 
-Let me know if you want to combine both into a single unified script or schedule them via cron for automated cleanup.
+Then make it executable:
+
+```bash
+chmod +x /usr/local/bin/clean.sh
+```
+
+---
+
+### 🕒 Step 3: Automate with `cron`
+
+Edit the crontab:
+
+```bash
+crontab -e
+```
+
+Add a line to run the script daily at 2:30 AM:
+
+```bash
+30 2 * * * /usr/local/bin/clean.sh >> /var/log/sohag_cleanup.log 2>&1
+```
+
+This will:
+- Run the script every day at 2:30 AM
+- Log output to `/var/log/sohag_cleanup.log`
+
+---
+
+### 🛡️ Optional: Add Safety Checks to Script
+
+Inside your script, you can add:
+
+```bash
+# Prevent accidental execution as non-root
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root"
+  exit 1
+fi
+```
+
+---
