@@ -1,5 +1,5 @@
-# System-Cleanup-Space-Optimization
-🧼 Script by Sohag — System Cleanup &amp; Space Optimization
+# System-Cleanup-Space-Optimization  <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2Fsohag1192%2FSystem-Cleanup-Space-Optimization&label=&icon=github&color=%23fd7e14&message=&style=for-the-badge&tz=UTC">
+🧼 Script by Sohag — System Cleanup &amp; Space Optimization  
 
 
 ---
