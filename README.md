@@ -1,36 +1,68 @@
-# System-Cleanup-Space-Optimization  <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2Fsohag1192%2FSystem-Cleanup-Space-Optimization&label=&icon=github&color=%23fd7e14&message=&style=for-the-badge&tz=UTC">
-🧼 Script by Sohag — System Cleanup &amp; Space Optimization  
+---
 
+# 🧹 System Cleanup & Space Optimization
+
+## 📖 Overview
+This repository contains shell scripts to automate **system cleanup** and **disk space optimization**.  
+It helps free up space by cleaning logs, caches, orphaned packages, and temporary files across Ubuntu/Proxmox servers.
 
 ---
 
-### 🧼 Summary of `log_cleanup.sh`
-- **Truncates all log files** under `/var/log` except `wtmp` and `btmp`
-- **Deletes rotated logs** (`*.gz`, `*.1`, etc.)
-- **Vacuum systemd journal logs** older than 7 days
-- **Clears NGINX and RTMP logs**
-- **Cleans APT cache and removes orphaned packages**
-- **Deletes trash and manual pages**
-- **Shows disk usage after cleanup**
+## ⚙️ Features
+- **[Truncate all log files](guide://action?prefill=Tell%20me%20more%20about%3A%20Truncate%20all%20log%20files)** under `/var/log` (excluding `wtmp` and `btmp`).
+- **[Delete rotated/compressed logs](guide://action?prefill=Tell%20me%20more%20about%3A%20Delete%20rotated%2Fcompressed%20logs)** (`*.gz`, `*.1`, etc.).
+- **[Vacuum systemd journal logs](guide://action?prefill=Tell%20me%20more%20about%3A%20Vacuum%20systemd%20journal%20logs)** older than 7 days.
+- **[Clear Nginx and RTMP logs](guide://action?prefill=Tell%20me%20more%20about%3A%20Clear%20Nginx%20and%20RTMP%20logs)**.
+- **[Clean APT cache](guide://action?prefill=Tell%20me%20more%20about%3A%20Clean%20APT%20cache)** and remove orphaned packages.
+- **[Delete trash and manual pages](guide://action?prefill=Tell%20me%20more%20about%3A%20Delete%20trash%20and%20manual%20pages)**.
+- **[Show disk usage after cleanup](guide://action?prefill=Tell%20me%20more%20about%3A%20Show%20disk%20usage%20after%20cleanup)**.
 
 ---
 
-### 🚀 Automate with `wget` + `cron`
-
-#### 1. Download the script:
+## 🚀 Usage
+### 1. Download the script
 ```bash
-wget -O log_cleanup.sh https://raw.githubusercontent.com/sohag1192/System-Cleanup-Space-Optimization/main/log_cleanup.sh
+wget -O log_cleanup.sh https://raw.githubusercontent.com/sohag1192/System-Cleanup-Script/main/log_cleanup.sh
 chmod +x log_cleanup.sh
 ```
 
-#### 2. Schedule it with cron:
+### 2. Run manually
+```bash
+sudo ./log_cleanup.sh
+```
+
+### 3. Automate with cron
+Edit crontab:
 ```bash
 crontab -e
 ```
-
 Add this line to run daily at 3:00 AM:
 ```bash
 0 3 * * * /root/log_cleanup.sh >> /root/log_cleanup.log 2>&1
 ```
 
 ---
+
+## 📂 Scripts Included
+- **[clean-logs.sh](guide://action?prefill=Tell%20me%20more%20about%3A%20clean-logs.sh)** – Apache2, Nginx, and Ubuntu cache cleanup.  
+- **[clean.sh](guide://action?prefill=Tell%20me%20more%20about%3A%20clean.sh)** – General cleanup script.  
+- **[clean_up.sh](guide://action?prefill=Tell%20me%20more%20about%3A%20clean_up.sh)** – Renamed version of `clean.sh`.  
+- **[log_cleanup.sh](guide://action?prefill=Tell%20me%20more%20about%3A%20log_cleanup.sh)** – Advanced Ubuntu log cleaner with disk usage report.
+
+---
+
+## 🛡️ Notes
+- Safe for production servers, but always review before deploying.  
+- Run periodically to maintain optimal performance.  
+- Requires `deborphan` for orphaned package removal.
+
+---
+
+## 👤 Maintainer
+**Md. Sohag Rana**  
+Network & IT Infrastructure Manager, Sarker Net  
+📧 Email: sohag1192@gmail.com  
+💬 Telegram: [sohag1192  ](https://t.me/sohag1192)
+
+---
+
