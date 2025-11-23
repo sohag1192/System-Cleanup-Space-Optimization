@@ -58,6 +58,45 @@ Add this line to run daily at 3:00 AM:
 
 ---
 
+
+
+```bash
+# Ubuntu Log Cleaner
+wget -O log_cleanup.sh https://raw.githubusercontent.com/sohag1192/System-Cleanup-Script/main/log_cleanup.sh
+
+# Apache2/Nginx + Ubuntu cache cleanup
+wget -O clean-logs.sh https://raw.githubusercontent.com/sohag1192/System-Cleanup-Script/main/clean-logs.sh
+
+# General cleanup script
+wget -O clean_up.sh https://raw.githubusercontent.com/sohag1192/System-Cleanup-Script/main/clean_up.sh
+
+# Proxmox cleanup script
+wget -O proxmox-cleanup.sh https://raw.githubusercontent.com/sohag1192/System-Cleanup-Script/main/proxmox-cleanup.sh
+
+# Alternate Proxmox cleanup script
+wget -O proxmox_clean.sh https://raw.githubusercontent.com/sohag1192/System-Cleanup-Script/main/proxmox_clean.sh
+```
+
+---
+
+### 📂 Scripts included
+- **[log_cleanup.sh](guide://action?prefill=Tell%20me%20more%20about%3A%20log_cleanup.sh)** – Advanced Ubuntu log cleaner with disk usage report  
+- **[clean-logs.sh](guide://action?prefill=Tell%20me%20more%20about%3A%20clean-logs.sh)** – Apache2, Nginx, and Ubuntu cache cleanup  
+- **[clean_up.sh](guide://action?prefill=Tell%20me%20more%20about%3A%20clean_up.sh)** – General cleanup script (renamed from `clean.sh`)  
+- **[proxmox-cleanup.sh](guide://action?prefill=Tell%20me%20more%20about%3A%20proxmox-cleanup.sh)** – Proxmox‑specific cleanup with cache/log removal  
+- **[proxmox_clean.sh](guide://action?prefill=Tell%20me%20more%20about%3A%20proxmox_clean.sh)** – Alternate Proxmox cleanup script  
+
+---
+
+### ⚡ Quick usage
+1. Run `chmod +x scriptname.sh` after download.  
+2. Execute with `sudo ./scriptname.sh`.  
+3. (Optional) Add to cron for scheduled cleanup.  
+
+This way you’ll have **all log cleanup scripts** locally, ready to run or customi
+
+---
+
 ## 👤 Maintainer
 **Md. Sohag Rana**  
 Network & IT Infrastructure Manager, Sarker Net  
@@ -65,4 +104,3 @@ Network & IT Infrastructure Manager, Sarker Net
 💬 Telegram: [sohag1192  ](https://t.me/sohag1192)
 
 ---
-
