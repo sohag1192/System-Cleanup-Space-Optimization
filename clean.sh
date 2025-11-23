@@ -1,0 +1,50 @@
+#!/bin/sh
+# Proxmox Cache & Log Cleanup Script
+# Author: Md. Sohag Rana (adapted for Proxmox)
+
+echo "=== Starting Proxmox cleanup ==="
+
+# Clear Nginx/RTMP logs if present
+[ -d /usr/local/nginx/logs ] && {
+  : > /usr/local/nginx/logs/access.log
+  : > /usr/local/nginx/logs/error.log
+  : > /usr/local/nginx/logs/rtmp_error.log
+}
+
+# Show disk usage of apt cache before cleaning
+du -sh /var/cache/apt/archives
+
+# Clean system logs
+find /var/log -type f -exec sh -c ': > "$1"' _ {} \;
+
+# Clean apt caches and partial packages
+apt-get clean
+apt-get autoclean
+apt-get autoremove -y
+
+# Remove orphaned packages (requires deborphan)
+if command -v deborphan >/dev/null 2>&1; then
+  deborphan | xargs --no-run-if-empty apt-get -y remove --purge
+fi
+
+# Remove Trash
+rm -rf /home/*/.local/share/Trash/*/** 2>/dev/null
+rm -rf /root/.local/share/Trash/*/** 2>/dev/null
+
+# Remove man pages (optional, saves space but removes docs)
+rm -rf /usr/share/man/?? 2>/dev/null
+rm -rf /usr/share/man/??_* 2>/dev/null
+
+# Delete rotated and compressed logs
+find /var/log -type f -regex ".*\.gz$" -delete
+find /var/log -type f -regex ".*\.[0-9]$" -delete
+
+# Proxmox-specific cleanup
+# Remove old ISO images and container templates if cached
+rm -rf /var/lib/vz/template/cache/*.tar.gz 2>/dev/null
+rm -rf /var/lib/vz/template/iso/*.iso 2>/dev/null
+
+# Clear Proxmox backup logs
+rm -rf /var/lib/vz/dump/*.log 2>/dev/null
+
+echo "=== Proxmox cleanup completed ==="
