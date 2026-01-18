@@ -39,12 +39,5 @@ rm -rf /usr/share/man/??_* 2>/dev/null
 find /var/log -type f -regex ".*\.gz$" -delete
 find /var/log -type f -regex ".*\.[0-9]$" -delete
 
-# Proxmox-specific cleanup
-# Remove old ISO images and container templates if cached
-rm -rf /var/lib/vz/template/cache/*.tar.gz 2>/dev/null
-rm -rf /var/lib/vz/template/iso/*.iso 2>/dev/null
-
-# Clear Proxmox backup logs
-rm -rf /var/lib/vz/dump/*.log 2>/dev/null
 
 echo "=== Proxmox cleanup completed ==="
